@@ -1,42 +1,18 @@
 import AllPosts from "../../component/posts/all-posts";
+import { getAllPosts } from "../../lib/post-util";
 
-function AllPostsPage() {
-  const DUMMY_POSTS = [
-    {
-      slug: "getting-started-nextjs",
-      title: "Getting Started Nextjs",
-      image: "getting-started-nextjs.png",
-      excerpt:
-        "Next.js is a React framework for building full-stack web applications. You use React Components to build user interfaces, and Next.js for additional features and optimizations.",
-      date: "2022-02-10",
-    },
-    {
-      slug: "getting-started-nextjs1",
-      title: "Getting Started Nextjs",
-      image: "getting-started-nextjs.png",
-      excerpt:
-        "Next.js is a React framework for building full-stack web applications. You use React Components to build user interfaces, and Next.js for additional features and optimizations.",
-      date: "2022-02-10",
-    },
-    {
-      slug: "getting-started-nextjs2",
-      title: "Getting Started Nextjs",
-      image: "getting-started-nextjs.png",
-      excerpt:
-        "Next.js is a React framework for building full-stack web applications. You use React Components to build user interfaces, and Next.js for additional features and optimizations.",
-      date: "2022-02-10",
-    },
-    {
-      slug: "getting-started-nextjs3",
-      title: "Getting Started Nextjs",
-      image: "getting-started-nextjs.png",
-      excerpt:
-        "Next.js is a React framework for building full-stack web applications. You use React Components to build user interfaces, and Next.js for additional features and optimizations.",
-      date: "2022-02-10",
-    },
-  ];
+function AllPostsPage(props) {
+  return <AllPosts posts={props.posts} />;
+}
 
-  return <AllPosts posts={DUMMY_POSTS} />;
+export async function getStaticProps() {
+  const allPosts = getAllPosts();
+
+  return {
+    props: {
+      posts: allPosts,
+    },
+  };
 }
 
 export default AllPostsPage;
